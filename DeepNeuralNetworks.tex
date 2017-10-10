@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\title{Deep Neural Networks}
+\date{08/10/2017}
+\author{Irdi Balla}
+
+\begin{document}
+	\maketitle
+	\pagenumbering{gobble}
+	\section{Linear Models}
+	\begin{equation}
+	XW + b = Y -> softmax(Y)	
+	\end{equation}
+	\subsection{Disadvantages}
+	\begin{itemize}
+		\item (N + 1)K total parameters. In practice you might want more. (N is the size of X and K the number of labels)
+		\item It's linear
+		\begin{itemize}
+			\item can represent inputs that interact in an additive way but not those that interact in a multiplicative way
+		\end{itemize}
+	\end{itemize}
+	\subsection{Advantages}
+	\begin{itemize}
+		\item GPUs were designed for big matrix multiplications
+		\item Linear Models are numerically stable
+		\begin{itemize}
+			\item small changes in input cannot yield big changes in output
+			\item derivatives are constant
+		\end{itemize}
+	\end{itemize}
+	\subsection{What we want}
+		\begin{itemize}
+			\item Keep parameters inside big linear functions
+			\item But the entire model should be non-linear
+		\end{itemize}
+	
+	\section{Rectified Linear Units (ReLUs)}
+	ReLUs are the simplest non-linear model. Example of a ReLU:
+	\begin{equation}
+	y = {0 for x<0, x for x>=0}
+	\end{equation}
+	\section{2-layer Neural Network}
+	\begin{equation}
+	XW + b -> ReLu *W + b = Y
+	\end{equation}
+	The first layer is hidden and consists of weights and biases which are then passed through the ReLU. The output is fed to the second layer which again consists of weights and biases applied to the intermediate results.
+	\section{Backward and forward propagation}
+	\begin{itemize}
+		\item Back-propagation: Calculating derivatives by going backwards, starting from the result, and using the chain rule. Back-propagation makes calculating derivatives easy and efficient as long as they are simple.
+		\item Forward-Propagation is running the model on the other direction, from the input to the prediction.
+	\end{itemize}
+\section{Stochastic Gradient Descent (SGD)}
+	For every single batch of training data a forward and a back-propagation is run. This gives us gradients for every weight. They are used to update the weights through a learning rate. After enough repetitions we want our model to increase accuracy. We have to do this while preventing over-fitting. To prevent that we could:
+	\begin{itemize}
+		\item Termaite Early: stop training when the validation set performance stops increasing
+		\item Regularize: Apply artificial constraints that reduce the number of free parameters without increasing the difficulty in optimization. L2-Regularization is a type of regularization. L2-Reg adds a term to the loss to penalize large weights.
+	\end{itemize}
+\end{document}

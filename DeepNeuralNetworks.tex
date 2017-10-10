@@ -54,5 +54,12 @@
 	\begin{itemize}
 		\item Termaite Early: stop training when the validation set performance stops increasing
 		\item Regularize: Apply artificial constraints that reduce the number of free parameters without increasing the difficulty in optimization. L2-Regularization is a type of regularization. L2-Reg adds a term to the loss to penalize large weights.
+		\begin{equation}
+			L = loss + \beta \frac{1}{2}||\omega||^2
+		\end{equation}
 	\end{itemize}
+\subsection{Dropout}
+	Dropout is a regularization technique. The values that go from one layer to another are called activations. Using dropout for every train example half of the activations are dropped. This way the model cannot rely on any activation to be present and thus it has to learn a redundant representation. After evaluation the activations are averaged
+
+
 \end{document}
